@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d97415;
+    margin: 0;
+}
+
+/* header */
+
+header {
+    background: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: black;
+}
+
+/* layout */
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px;
+}
+
+/* cards */
+
+.card {
+    background: #2a33e5;
+    padding: 20px;
+    width: 250px;
+    border-radius: 8px;
+}
+
+/* buttons */
+
+button {
+    margin-top: 15px;
+    padding: 10px;
+    border: none;
+    background: black;
+    color: white;
+    border-radius: 5px;
+}
