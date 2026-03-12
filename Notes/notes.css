@@ -84,3 +84,12 @@ body { background-color: orange; }
   font-size: 36px;
   color: #222;
 }
+
+button {
+    margin-top: 15px;
+    padding: 10px;
+    border: none;
+    background: black;
+    color: white;
+    border-radius: 5px;
+}
