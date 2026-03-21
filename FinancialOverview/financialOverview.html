@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Financial Overview</title>
     <link rel="stylesheet" href="financialOverview.css">
+    <!-- Script for opening the popupwindow -->
+    <script>
+      function openAddTransactionPopup() {
+      window.open(
+        "addTransactionPopUp.html",
+        "myPopupWindow",
+        "width=500,height=350,left=200,top=150,resizable=yes,scrollbars=yes"
+      );
+      }
+    </script>
   </head>
   <body>
     <div class="page">
@@ -32,7 +42,7 @@
           </section>
 
           <section class="actions" aria-label="Actions">
-            <button class="btn" id="addTransactionBtn">Add Transaction</button>
+            <button onclick = "openAddTransactionPopup()" class="btn" id="addTransactionBtn">Add Transaction</button>
             <button class="btn">Delete Transaction</button>
             <button class="btn">Edit Transaction</button>
           </section>
@@ -41,6 +51,8 @@
             <div class="list-inner">
               <div class="list-title">Transaction<br />List</div>
               <ul id="transactionList"></ul>
+                <li>hello world</li>
+                <li>hello other world</li>
             </div>
           </section>
         </div>
