@@ -23,11 +23,18 @@
 
       <div class="body">
         <div class="action">
-          <input type="search" id="site-search" name="q" />
-          <button type="button">Search</button>
+          <input type="search" id="site-search" name="q" placeholder="Search title" />
+          <button type="button" id="searchBtn">Search</button>
           <button type="button" id="addNoteBtn" class="action-btn">Add Note</button>
           <button type="button" class="action-btn">Create Folder</button>
-          <button type="button" class="action-btn">Delete</button>
+          <button type="button" id="deleteBtn" class="action-btn">Delete</button>
+          <button type="button" id="confirmDeleteBtn" class="action-btn">Confirm Delete</button>
+        </div>
+
+        <div id="noteForm">
+          <input type="text" id="noteNameInput" placeholder="Title" />
+          <button type="button" id="createNoteBtn">Create</button>
+          <button type="button" id="cancelNoteBtn">Cancel</button>
         </div>
 
         <div id="notesGrid" class="notes-grid"></div>
@@ -37,13 +44,145 @@
 
   <script>
     const addBtn = document.getElementById("addNoteBtn");
+    const searchBtn = document.getElementById("searchBtn");
+    const searchInput = document.getElementById("site-search");
+    const deleteBtn = document.getElementById("deleteBtn");
+    const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
     const notesGrid = document.getElementById("notesGrid");
 
+    const noteForm = document.getElementById("noteForm");
+    const noteNameInput = document.getElementById("noteNameInput");
+    const createNoteBtn = document.getElementById("createNoteBtn");
+    const cancelNoteBtn = document.getElementById("cancelNoteBtn");
+
+    const notes = [];
+    let deleteMode = false;
+    let currentKeyword = "";
+
+    function renderNotes(list) {
+      notesGrid.innerHTML = "";
+
+      list.forEach((note) => {
+        const item = document.createElement("div");
+        item.className = "note-item";
+
+        const card = document.createElement("div");
+        card.className = "note-card";
+
+        const title = document.createElement("div");
+        title.className = "note-title";
+        title.textContent = note.name;
+
+        card.appendChild(title);
+        item.appendChild(card);
+
+        if (deleteMode) {
+          const checkArea = document.createElement("div");
+          checkArea.className = "check-area-outside";
+
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.checked = note.selected;
+
+          checkbox.addEventListener("change", () => {
+            note.selected = checkbox.checked;
+          });
+
+          checkArea.appendChild(checkbox);
+          item.appendChild(checkArea);
+        }
+
+        notesGrid.appendChild(item);
+      });
+    }
+
+    function getFilteredNotes() {
+      if (currentKeyword === "") {
+        return notes;
+      }
+
+      return notes.filter((note) =>
+        note.name.toLowerCase().includes(currentKeyword)
+      );
+    }
+
+    function updateView() {
+      renderNotes(getFilteredNotes());
+    }
+
+    function resetSelections() {
+      notes.forEach((note) => {
+        note.selected = false;
+      });
+    }
+
+    function openNoteForm() {
+      noteForm.classList.add("show");
+      noteNameInput.value = "";
+      noteNameInput.focus();
+    }
+
+    function closeNoteForm() {
+      noteForm.classList.remove("show");
+      noteNameInput.value = "";
+    }
+
     addBtn.addEventListener("click", () => {
-      const card = document.createElement("div");
-      card.className = "note-card";
-      card.textContent = "note";
-      notesGrid.appendChild(card);
+      openNoteForm();
+    });
+
+    createNoteBtn.addEventListener("click", () => {
+      const trimmedName = noteNameInput.value.trim();
+
+      if (trimmedName === "") {
+        alert("Input title");
+        return;
+      }
+
+      notes.push({
+        name: trimmedName,
+        selected: false
+      });
+
+      closeNoteForm();
+      updateView();
+    });
+
+    cancelNoteBtn.addEventListener("click", () => {
+      closeNoteForm();
+    });
+
+    noteNameInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        createNoteBtn.click();
+      }
+    });
+
+    function searchNotes() {
+      currentKeyword = searchInput.value.trim().toLowerCase();
+      updateView();
+    }
+
+    searchBtn.addEventListener("click", searchNotes);
+    searchInput.addEventListener("input", searchNotes);
+
+    deleteBtn.addEventListener("click", () => {
+      deleteMode = true;
+      confirmDeleteBtn.style.display = "inline-block";
+      updateView();
+    });
+
+    confirmDeleteBtn.addEventListener("click", () => {
+      for (let i = notes.length - 1; i >= 0; i--) {
+        if (notes[i].selected) {
+          notes.splice(i, 1);
+        }
+      }
+
+      deleteMode = false;
+      confirmDeleteBtn.style.display = "none";
+      resetSelections();
+      updateView();
     });
   </script>
 </body>

@@ -21,7 +21,8 @@
       /* Page frame */
       /*main page container */
       .page{
-        width:min(1400px, 100%);
+        /* width:min(1400px, 100%); */
+        width: 100%;
         margin:0 auto;
         border:1px solid var(--gray-200);
       }
@@ -82,7 +83,8 @@
       
       /* Main Content area */
       .content{
-        background:var(--yellow);
+        /* background:var(--yellow); */
+        background: #f7f9fc;
         padding:36px 34px 42px;
         position:relative;
         overflow:hidden;
