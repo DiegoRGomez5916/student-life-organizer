@@ -4,6 +4,13 @@
     box-sizing: border-box;
 }
 
+.main{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #F7F9FC;
+}
+
 .header{
     width: 100%;
     display: flex;
@@ -15,30 +22,31 @@
     align-items: center;
 }
 
-nav{
+.nav{
+    background-color: #3A7BD5;
     width: 100%;
     padding: 10px;
     display: flex;
     align-items: center;
 }
 
-a{
+.nav a{
     margin: 10px;
 }
 
-.main{
-    background-color: orange;
+.calendar{
+    flex: 1;
     padding: 10px;
     display: grid;
-    grid-template-columns: repeat(15, 1fr);
-    grid-template-rows: repeat(25, 1fr);
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto 1fr;
 }
 
 .date-bar{
-    background-color: aqua;
+    background-color: #3A7BD5;
     margin: 10px;
-    grid-row: 0;
-    grid-column: 2 / span 15;
+    grid-row: 1;
+    grid-column: 1 / span 7;
     display: flex;
     justify-content: space-around;
 }
@@ -47,23 +55,21 @@ a{
     margin: 10px;
 }
 
-.time-side-bar{
-    background-color: aqua;
-    margin: 10px;
-    grid-row: 2 / span 24;
-    grid-column: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.time{
-    margin: 10px;
-}
-
 .events{
-    background-color: aqua;
     margin: 10px;
-    grid-row: 2 / span 24;
-    grid-column: 2 / span 15;
+    grid-row: 2;
+    grid-column: 1 / span 7;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto;
+    gap: 10px;
+}
+
+.day{
+    padding: 10px;
+    background-color: #3A7BD5;
+}
+
+.event-list{
+    list-style-position: inside;
 }
