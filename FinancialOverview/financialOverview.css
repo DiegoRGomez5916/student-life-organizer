@@ -30,13 +30,32 @@
       /* Top bar */
       /* header background */
       .topbar{
-        background:var(--gray-200);
+        /* background:var(--gray-200); */
+        background: #3A7BD5;
         padding:14px 14px 10px;
         position:sticky;
         top:0;
         z-index:10;
+
+        display:flex;
+        align-items:center;
+        justify-content: space-between;
+        gap:20px;
       }
-      .topbar .title-pill{
+
+      .topbar h1{
+        margin:0;
+      }
+
+      .topbar h2{
+        margin:4px 0 0 0;
+      }
+      
+      .titles{
+        display:flex;
+        flex-direction:column;
+      }
+      /* .topbar .title-pill{
         display:inline-block;
         background:var(--gray-100);
         border:1px solid #d7d7d7;
@@ -44,12 +63,12 @@
         padding:10px 14px;
         font-weight:600;
         letter-spacing:.2px;
-      }
+      } */
       
       .navrow{
         margin-top:10px;
-        background:#fff;
-        border:1px solid #d7d7d7;
+        background:#3A7BD5;
+        /* border:1px solid #d7d7d7; */
         border-radius:8px;
         padding:18px 18px;
         display:flex;
@@ -113,7 +132,7 @@
 
       /* Summary of finacial overview*/
       .summary{
-        background:var(--blue);
+        background: #3A7BD5;
         border-radius:6px;
         min-height:360px;
         display:grid;
@@ -159,7 +178,8 @@
         border-radius:8px;
         border:3px solid rgba(0,0,0,.35);
         padding:18px;
-        max-width:520px;
+        width:100%;
+        /* max-width:520px; */
         margin-left:auto;
       }
       .list-inner{

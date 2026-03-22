@@ -57,10 +57,25 @@
   </div>
 
   <div class="button-group">
-    <button onclick = "window.close()" id="submitBtn">Submit</button>
-    <button onclick = "window.close()" id="closeBtn" type="button">Close</button>
+    <button onclick = "addToList(); window.close()" id="submitBtn">Submit</button>
+    <button onclick = "window.close(transactionList)" id="closeBtn" type="button">Close</button>
   </div>
 
   <!-- <script type="module" src="popup.js"></script> -->
+   <script>
+    function addToList(listId, text) {
+      const list = document.getElementById(listId);
+
+      if (!list) {
+        console.error("List not found:", listId);
+        return;
+      }
+
+      const li = document.createElement("li");
+      li.textContent = text;
+
+      list.appendChild(li);
+}
+   </script>
 </body>
 </html>
