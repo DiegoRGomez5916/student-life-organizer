@@ -3,14 +3,10 @@ class FinancialTracker {
     this.transactions = [];
   }
 
-  addTransaction() {
-    const name = prompt("Transaction Name:");
-    const amount = parseFloat(prompt("Enter Income or Expense (+ or -):"));
-
-    this.transactions.push({ name, amount });
-
-    this.updateUI();
-  }
+  addTransaction(name, amount) {
+  this.transactions.push({ name, amount });
+  this.updateUI();
+}
 
   getBalance() {
     let total = 0;
