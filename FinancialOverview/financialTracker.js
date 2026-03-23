@@ -41,4 +41,4 @@ class FinancialTracker {
   }
 }
 
-const tracker = new FinancialTracker();
+window.tracker = new FinancialTracker();
