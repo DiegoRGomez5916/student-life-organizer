@@ -1,0 +1,9 @@
+:root {
+    --primary-color: #3A7BD5;
+    --accent-color: #8E6AE8;
+    --background-color: #F7F9FC;
+    --text-color: #111111;
+
+    --base-font-size: 16px;
+    --main-font: Impact, 'Arial Narrow Bold', sans-serif;
+}
