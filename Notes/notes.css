@@ -1,6 +1,7 @@
 body {
-  background-color: #F7F9FC;
-  font-family: Inter;
+  margin: 0;
+  background-color: #e9e9ec;
+  font-family: Arial, sans-serif;
 }
 
 .layout {
@@ -14,50 +15,76 @@ body {
 
 .header {
   display: flex;
-  align-items: center;
-  background-color: white;
-  padding: 12px 24px;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #4a84d8;
+  padding: 20px 30px;
   box-sizing: border-box;
-  font-family: Poppins;
 }
 
-.header-innner {
-  margin-left: auto;
+.header-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 700;
+  color: black;
+  line-height: 1.1;
+}
+
+.page-title {
+  margin: 8px 0 0 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: black;
+  line-height: 1.1;
+}
+
+.header-right {
   display: flex;
   align-items: center;
-  gap: 20px;
-  font-family: Poppins;
+  gap: 50px;
+  margin-top: 10px;
+}
+
+.header-right a {
+  text-decoration: none;
+  color: black;
+  font-size: 22px;
+  font-weight: 500;
 }
 
 #humberger {
   position: relative;
-  width: 28px;
-  height: 20px;
+  width: 42px;
+  height: 30px;
   display: inline-block;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 #humberger div {
   position: absolute;
   left: 0;
-  width: 28px;
-  height: 2px;
-  background-color: #444;
+  width: 42px;
+  height: 4px;
+  background-color: black;
   border-radius: 2px;
-  display: inline-block;
-  box-sizing: border-box;
 }
 
 #humberger div:nth-of-type(1) {
-  bottom: 20px;
+  top: 0;
 }
 
 #humberger div:nth-of-type(2) {
-  bottom: 10px;
+  top: 13px;
 }
 
 #humberger div:nth-of-type(3) {
-  bottom: 0;
+  top: 26px;
 }
 
 .body {

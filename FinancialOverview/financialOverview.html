@@ -38,13 +38,13 @@
           <div class="logo">LOGO</div>
 
           <section class="summary" aria-label="Savings summary">
-            <h2>
-              Your Savings/<br />Spendings is $400
-            </h2>
+            <h2 id="balance">Total Balance: $0</h2>
           </section>
 
           <section class="actions" aria-label="Actions">
-            <button onclick = "openAddTransactionPopup()" class="btn" id="addTransactionBtn">Add Transaction</button>
+            <button onclick="tracker.addTransaction()" class="btn" id="addTransactionBtn">
+              Add Transaction
+            </button>
             <button class="btn">Delete Transaction</button>
             <button class="btn">Edit Transaction</button>
           </section>
@@ -53,8 +53,8 @@
             <div class="list-inner">
               <div class="list-title">Transaction<br />List</div>
               <ul id="transactionList"></ul>
-                <li>Groceries: -$80</li>
-                <li>Pay Check: $480</li>
+                <li>hello world</li>
+                <li>hello other world</li>
             </div>
           </section>
         </div>
