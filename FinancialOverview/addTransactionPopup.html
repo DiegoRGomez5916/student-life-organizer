@@ -62,20 +62,19 @@
   </div>
 
   <!-- <script type="module" src="popup.js"></script> -->
-   <script>
-    function addToList(listId, text) {
-      const list = document.getElementById(listId);
+ <script>
+  function addToList() {
+    const name = document.getElementById("transactionName").value;
+    const price = parseFloat(document.getElementById("transactionPrice").value);
 
-      if (!list) {
-        console.error("List not found:", listId);
-        return;
-      }
+    if (!name || isNaN(price)) {
+      alert("Please fill in a name and price.");
+      return;
+    }
 
-      const li = document.createElement("li");
-      li.textContent = text;
-
-      list.appendChild(li);
-}
-   </script>
+    window.opener.tracker.addTransaction(name, price);
+    window.close();
+  }
+</script>
 </body>
 </html>
