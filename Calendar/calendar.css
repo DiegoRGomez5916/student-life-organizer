@@ -54,13 +54,31 @@
     padding: 10px;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto 1fr;
+}
+
+.month-selector{
+    grid-row: 1;
+    grid-column: 1 / span 7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.prev-month, .next-month{
+    padding: 10px;
+    margin: 10px;
+    background-color: #000000;
+    color: #F7F9FC;
+    border: none;
+    cursor: pointer;
 }
 
 .date-bar{
     background-color: var(--primary-color);
     margin: 10px;
-    grid-row: 1;
+    grid-row: 2;
     grid-column: 1 / span 7;
     display: flex;
     justify-content: space-around;
@@ -72,7 +90,7 @@
 
 .events{
     margin: 10px;
-    grid-row: 2;
+    grid-row: 3;
     grid-column: 1 / span 7;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
