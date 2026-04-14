@@ -1,13 +1,13 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #d97415;
+    background-color: #F7F9FC;
     margin: 0;
 }
 
 /* header */
 
 header {
-    background: white;
+    background: #3A7BD5;
     padding: 15px;
     display: flex;
     justify-content: space-between;
@@ -32,7 +32,7 @@ nav a {
 /* cards */
 
 .card {
-    background: #2a33e5;
+    background: #3A7BD5;
     padding: 20px;
     width: 250px;
     border-radius: 8px;
