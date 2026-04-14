@@ -10,10 +10,15 @@
   <div class="layout">
     <main class="content">
       <div class="header">
-        <div class="header-innner">
-            <a href="/homepage/index.html">Home</a>
-            <a href="/finace/index.html">Finace</a>
-            <a href="/calendar/index.html">Calendar</a>
+        <div class="header-left">
+          <h1 class="site-title">Student Life Organizer</h1>
+          <h2 class="page-title">Notes</h2>
+        </div>
+
+        <div class="header-right">
+          <a href="/homepage/index.html">HomePage</a>
+          <a href="/FinancialOverview/financialOverview.html">Financial Overview</a>
+          <a href="/Calendar/calendar.html">Calendar</a>
 
           <div id="humberger">
             <div></div><div></div><div></div>
@@ -22,11 +27,15 @@
       </div>
 
       <div class="body">
+        <div class="left-logo">
+          <span>LOGO</span>
+        </div>
+
         <div class="action">
           <input type="search" id="site-search" name="q" placeholder="Search title" />
           <button type="button" id="searchBtn">Search</button>
-          <button type="button" id="addNoteBtn" class="action-btn">Add Note</button>
-          <button type="button" class="action-btn">Create Folder</button>
+          <button type="button" id="addNoteBtn" class="action-btn">Create</button>
+          <button type="button" id="editBtn" class="action-btn">Edit</button>
           <button type="button" id="deleteBtn" class="action-btn">Delete</button>
           <button type="button" id="confirmDeleteBtn" class="action-btn">Confirm Delete</button>
         </div>
@@ -37,6 +46,12 @@
           <button type="button" id="cancelNoteBtn">Cancel</button>
         </div>
 
+        <div id="editForm">
+          <input type="text" id="editNoteInput" placeholder="Edit title" />
+          <button type="button" id="saveEditBtn">Save</button>
+          <button type="button" id="cancelEditBtn">Cancel</button>
+        </div>
+
         <div id="notesGrid" class="notes-grid"></div>
       </div>
     </main>
@@ -44,6 +59,7 @@
 
   <script>
     const addBtn = document.getElementById("addNoteBtn");
+    const editBtn = document.getElementById("editBtn");
     const searchBtn = document.getElementById("searchBtn");
     const searchInput = document.getElementById("site-search");
     const deleteBtn = document.getElementById("deleteBtn");
@@ -55,14 +71,23 @@
     const createNoteBtn = document.getElementById("createNoteBtn");
     const cancelNoteBtn = document.getElementById("cancelNoteBtn");
 
+    const editForm = document.getElementById("editForm");
+    const editNoteInput = document.getElementById("editNoteInput");
+    const saveEditBtn = document.getElementById("saveEditBtn");
+    const cancelEditBtn = document.getElementById("cancelEditBtn");
+
     const notes = [];
     let deleteMode = false;
+    let editMode = false;
     let currentKeyword = "";
+    let editingIndex = -1;
 
     function renderNotes(list) {
       notesGrid.innerHTML = "";
 
       list.forEach((note) => {
+        const originalIndex = notes.indexOf(note);
+
         const item = document.createElement("div");
         item.className = "note-item";
 
@@ -75,6 +100,17 @@
 
         card.appendChild(title);
         item.appendChild(card);
+
+        if (editMode) {
+          card.classList.add("clickable");
+
+          card.addEventListener("click", () => {
+            editingIndex = originalIndex;
+            editNoteInput.value = notes[editingIndex].name;
+            editForm.classList.add("show");
+            editNoteInput.focus();
+          });
+        }
 
         if (deleteMode) {
           const checkArea = document.createElement("div");
@@ -127,7 +163,18 @@
       noteNameInput.value = "";
     }
 
+    function closeEditForm() {
+      editForm.classList.remove("show");
+      editNoteInput.value = "";
+      editingIndex = -1;
+    }
+
     addBtn.addEventListener("click", () => {
+      editMode = false;
+      deleteMode = false;
+      confirmDeleteBtn.style.display = "none";
+      resetSelections();
+      updateView();
       openNoteForm();
     });
 
@@ -158,6 +205,40 @@
       }
     });
 
+    editBtn.addEventListener("click", () => {
+      deleteMode = false;
+      confirmDeleteBtn.style.display = "none";
+      resetSelections();
+      editMode = true;
+      updateView();
+    });
+
+    saveEditBtn.addEventListener("click", () => {
+      const trimmedName = editNoteInput.value.trim();
+
+      if (trimmedName === "") {
+        alert("Input title");
+        return;
+      }
+
+      if (editingIndex >= 0) {
+        notes[editingIndex].name = trimmedName;
+      }
+
+      closeEditForm();
+      updateView();
+    });
+
+    cancelEditBtn.addEventListener("click", () => {
+      closeEditForm();
+    });
+
+    editNoteInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        saveEditBtn.click();
+      }
+    });
+
     function searchNotes() {
       currentKeyword = searchInput.value.trim().toLowerCase();
       updateView();
@@ -167,6 +248,7 @@
     searchInput.addEventListener("input", searchNotes);
 
     deleteBtn.addEventListener("click", () => {
+      editMode = false;
       deleteMode = true;
       confirmDeleteBtn.style.display = "inline-block";
       updateView();

@@ -1,17 +1,19 @@
+@import url('/styleGuide.css');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Poppins, sans-serif;
-    color: #000000;
-    text-decoration: none;
+    color: var(--text-color);
+    font-family: var(--main-font);
+    font-size: var(--base-font-size);
 }
 
 .main{
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #F7F9FC;
+    background-color: var(--background-color);
 }
 
 .header{
@@ -26,7 +28,7 @@
 }
 
 .nav{
-    background-color: #3A7BD5;
+    background-color: var(--primary-color);
     width: 100%;
     padding: 10px;
     display: flex;
@@ -35,6 +37,7 @@
 
 .nav a{
     margin: 10px;
+    text-decoration: none;
 }
 
 .calendar{
@@ -64,7 +67,7 @@
 }
 
 .date-bar{
-    background-color: #3A7BD5;
+    background-color: var(--primary-color);
     margin: 10px;
     grid-row: 2;
     grid-column: 1 / span 7;
@@ -88,7 +91,7 @@
 
 .day{
     padding: 10px;
-    background-color: #3A7BD5;
+    background-color: var(--primary-color);
 }
 
 .event-list{
