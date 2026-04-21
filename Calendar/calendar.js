@@ -1,7 +1,8 @@
-export class Calendar{
-    constructor(){
-        this.events = [];
+class Calendar{
+    constructor(events=[]){
+        this.events = events;
         this.today = new Date();
+        console.log(this)
     }
 
     getFirstDayOfMonth(month){
@@ -59,11 +60,18 @@ export class Calendar{
         return monthString;
     }
 
-    addEvent(title, day, time, duration){
-        this.events.push(new Event(title, day, time, duration));
+    addEvent(newEvent){
+        this.events.push(newEvent);
+        console.log(newEvent);
     }
 
     deleteEvent(index){
         this.events.splice(index, 1);
     }
+
+    updateUI(){
+
+    }
 }
+
+window.calendar = new Calendar();

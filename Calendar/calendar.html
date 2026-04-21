@@ -2,6 +2,8 @@
 
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>calendar</title>
         <link rel="stylesheet" href="calendar.css">
     </head>
@@ -19,7 +21,8 @@
                 </div>
             </nav>
             <aside class="side-bar">
-                <button class="add-event">Add Event</button>
+                <button class="add-event" onclick="openAddEventWindow()">Add Event</button>
+                <button class="add-event" onclick="console.log(window.calendar)">log calendar</button>
             </aside>
             <div class="calendar">
                 <div class="month-selector">
@@ -37,167 +40,10 @@
                     <div class="date">SUN</div>
                 </div>
                 <div class="events">
-                    <div class="day">
-                        <p class="number">1</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">2</p>
-                        <ul class="event-list">
-                            <li class="event">Job Interview</li>
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">3</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">4</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">5</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">6</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">7</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">8</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">9</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">10</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">11</p>
-                        <ul class="event-list">
-                            <li class="event">Important Meeting</li>
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">12</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">13</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">14</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">15</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">16</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">17</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">18</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">19</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">20</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">21</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">22</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">23</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">24</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">25</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">26</p>
-                        <ul class="event-list">
-                            <li class="event">Club Meeting</li>
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">27</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">28</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">29</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">30</p>
-                        <ul class="event-list">
-                            <li class="event">Midterm Exam</li>
-                        </ul>
-                    </div>
-                    <div class="day">
-                        <p class="number">31</p>
-                        <ul class="event-list">
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
     </body>
+    <script src="buttonFunctions.js"></script>
+    <script src="calendar.js"></script>
 </html>

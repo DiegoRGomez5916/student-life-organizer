@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <form>
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title" placeholder="Event Title"><br>
+            <label for="date">Date:</label><br>
+            <input type="date" id="date" name="date" placeholder="mm/dd/yyyy"><br>
+            <label for="start">Start Time:</label><br>
+            <input type="time" id="start" name="start" placeholder="hh:mm"><br>
+            <label for="end">End Time:</label><br>
+            <input type="time" id="end" name="end" placeholder="hh:mm"><br>
+            <input type="button" value="Cancel" onclick="window.close();">
+            <input type="button" value="Submit" onclick="submitButton(new Event())">
+        </form>
+    </body>
+    <script src="buttonFunctions.js"></script>
+    <script src="event.js"></script>
+</html>

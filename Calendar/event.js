@@ -1,9 +1,10 @@
-export class Event{
-    constructor(title, day, time, duration){
+class Event{
+    constructor(title='', day='', start='', end=''){
         this.title = title;
         this.day = day;
-        this.time = time;
-        this.duration = duration;
+        this.start = start;
+        this.end = end;
+        console.log(this)
     }
 
     getTitle(){
@@ -11,6 +12,10 @@ export class Event{
     }
 
     setTitle(title){
+        const titlePattern = /^[\w\s]+$/;
+        if (!titlePattern.test(title)){
+            throw TypeError;
+        }
         this.title = title;
     }
 
@@ -22,19 +27,19 @@ export class Event{
         this.day = day;
     }
 
-    getTime(){
-        return this.time;
+    getStart(){
+        return this.start;
     }
 
-    setTime(time){
-        this.time = time;
+    setStart(start){
+        this.start = start;
     }
 
-    getDuration(){
-        return this.duration;
+    getEnd(){
+        return this.end;
     }
 
-    setDuration(duration){
-        this.duration = duration;
+    setEnd(end){
+        this.end = end;
     }
 }
