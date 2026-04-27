@@ -4,6 +4,24 @@ class Calendar{
         this.today = new Date();
     }
 
+    sortEvents(){
+        this.events.sort((a, b) => new Date(a.date) - new Date(b.date));
+    }
+
+    getUpcomingEvents(){
+        const today = new Date();
+        let index = 0
+        this.sortEvents();
+        for(let i = 0; i < this.events.length; i++){
+            if(today <= new Date(this.events[i].getDate() + 'T' + this.events[i].getStart() + ':00')){
+                break;
+            }else{
+                index++;
+            }
+        }
+        return this.events.slice(index, index + 3);
+    }
+
     getFirstDayOfMonth(month){
         return new Date(this.today.getFullYear(), month, 1).getDay();
     }
