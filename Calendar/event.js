@@ -1,10 +1,9 @@
 class Event{
-    constructor(title='', day='', start='', end=''){
+    constructor(title='', date='', start='', end=''){
         this.title = title;
-        this.day = day;
+        this.date = date;
         this.start = start;
         this.end = end;
-        console.log(this)
     }
 
     getTitle(){
@@ -19,12 +18,12 @@ class Event{
         this.title = title;
     }
 
-    getDay(){
-        return this.day;
+    getDate(){
+        return this.date;
     }
 
-    setDay(day){
-        this.day = day;
+    setDate(date){
+        this.date = date;
     }
 
     getStart(){

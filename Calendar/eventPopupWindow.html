@@ -15,10 +15,16 @@
             <input type="time" id="start" name="start" value="10:00"><br>
             <label for="end">End Time:</label><br>
             <input type="time" id="end" name="end" value="22:00"><br>
-            <input type="button" value="Cancel" onclick="window.close();">
-            <input type="button" value="Submit" onclick="submitButton(new Event())">
+            <input type="button" value="Delete" onclick="deleteOpenedEvent(window.newIndex)">
+            <input type="button" value="Submit" onclick="submitEditButton(window.newEvent)">
         </form>
     </body>
+    <script>
+        document.getElementById('title').value = window.newEvent.getTitle();
+        document.getElementById('date').value = window.newEvent.getDate();
+        document.getElementById('start').value = window.newEvent.getStart();
+        document.getElementById('end').value = window.newEvent.getEnd();
+    </script>
     <script src="calendar.js"></script>
     <script src="event.js"></script>
     <script src="buttonFunctions.js"></script>

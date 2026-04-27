@@ -22,28 +22,28 @@
             </nav>
             <aside class="side-bar">
                 <button class="add-event" onclick="openAddEventWindow()">Add Event</button>
-                <button class="add-event" onclick="console.log(window.calendar)">log calendar</button>
             </aside>
             <div class="calendar">
                 <div class="month-selector">
-                    <button class="prev-month">&lt;</button>
-                    <p class="month-year">February 2026</p>
-                    <button class="next-month">&gt;</button>
+                    <button class="prev-month" onclick="lastMonth()">&lt;</button>
+                    <p class="month-year" id="month-year"></p>
+                    <button class="next-month" onclick="nextMonth()">&gt;</button>
                 </div>
                 <div class="date-bar">
+                    <div class="date">SUN</div>
                     <div class="date">MON</div>
                     <div class="date">TUE</div>
                     <div class="date">WED</div>
                     <div class="date">THUR</div>
                     <div class="date">FRI</div>
                     <div class="date">SAT</div>
-                    <div class="date">SUN</div>
                 </div>
-                <div class="events">
+                <div class="events" id="events">
                 </div>
             </div>
         </div>
     </body>
-    <script src="buttonFunctions.js"></script>
     <script src="calendar.js"></script>
+    <script src="event.js"></script>
+    <script src="buttonFunctions.js"></script>
 </html>
