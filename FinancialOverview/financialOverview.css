@@ -1,235 +1,337 @@
-      /*creates variables for resuable colors*/
-      :root{
-        --gray-100:#f3f3f3;
-        --gray-200:#e5e5e5;
-        --gray-500:#9aa0a6;
-        --text:#111;
-        --yellow:#f4b53a;
-        --blue:#bfe6ff;
-        --btn:#111;
-        --card:#fff;
-      }
+/*********************************************************
+< Project: Student Life Organizer
+< File: financialOverview.css
+< Programer(s): Dyllan Cummings
+< Purpose: 
+<     - style guide for financialOverview.html
+< Date Due: 4/29/26
+***********************************************************/
+/* creates variables for reusable colors */
+:root{
+  --gray-100:#f3f3f3;
+  --gray-200:#e5e5e5;
+  --gray-500:#9aa0a6;
+  --text:#111;
+  --yellow:#f4b53a;
+  --blue:#bfe6ff;
+  --btn:#111;
+  --card:#fff;
+}
 
-      *{ box-sizing:border-box; }
-      body{
-        margin:0;
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-        color:var(--text);
-        background:#fff;
-      }
+*{
+  box-sizing:border-box;
+}
 
-      /* Page frame */
-      /*main page container */
-      .page{
-        /* width:min(1400px, 100%); */
-        width: 100%;
-        margin:0 auto;
-        border:1px solid var(--gray-200);
-      }
+body{
+  margin:0;
+  font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background:#fff;
+}
 
-      /* Top bar */
-      /* header background */
-      .topbar{
-        /* background:var(--gray-200); */
-        background: #3A7BD5;
-        padding:14px 14px 10px;
-        position:sticky;
-        top:0;
-        z-index:10;
+/* Page frame */
+.page{
+  width:100%;
+  margin:0 auto;
+  border:1px solid var(--gray-200);
+}
 
-        display:flex;
-        align-items:center;
-        justify-content: space-between;
-        gap:20px;
-      }
+/* Top bar */
+.topbar{
+  background:#3A7BD5;
+  padding:clamp(10px, 1.5vw, 14px) clamp(12px, 1.8vw, 14px) clamp(8px, 1vw, 10px);
+  position:sticky;
+  top:0;
+  z-index:10;
 
-      .topbar h1{
-        margin:0;
-      }
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:clamp(12px, 2vw, 20px);
+}
 
-      .topbar h2{
-        margin:4px 0 0 0;
-      }
-      
-      .titles{
-        display:flex;
-        flex-direction:column;
-      }
-      /* .topbar .title-pill{
-        display:inline-block;
-        background:var(--gray-100);
-        border:1px solid #d7d7d7;
-        border-radius:10px;
-        padding:10px 14px;
-        font-weight:600;
-        letter-spacing:.2px;
-      } */
-      
-      .navrow{
-        margin-top:10px;
-        background:#3A7BD5;
-        /* border:1px solid #d7d7d7; */
-        border-radius:8px;
-        padding:18px 18px;
-        display:flex;
-        align-items:center;
-        justify-content:flex-end;
-        gap:30px;
-      }
+.topbar h1{
+  margin:0;
+}
 
-      .navrow a{
-        text-decoration:none;
-        color:#222;
-        font-size:22px;
-        font-weight:500;
-      }
+.topbar h2{
+  margin:4px 0 0 0;
+}
 
-      /*hamburger menu icon on right side*/
-      .hamburger{
-        width:38px;
-        height:28px;
-        display:grid;
-        gap:6px;
-        margin-left:10px;
-      }
-      .hamburger span{
-        display:block;
-        height:3px;
-        background:#111;
-        border-radius:2px;
-      }
+.titles{
+  display:flex;
+  flex-direction:column;
+}
 
-      
-      /* Main Content area */
-      .content{
-        /* background:var(--yellow); */
-        background: #f7f9fc;
-        padding:36px 34px 42px;
-        position:relative;
-        overflow:hidden;
-      }
+.navrow{
+  margin-top:10px;
+  background:#3A7BD5;
+  border-radius:8px;
+  padding:clamp(12px, 2vw, 18px);
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:clamp(14px, 2.5vw, 30px);
+}
 
-      .layout{
-        display:grid;
-        grid-template-columns: 140px 420px 280px 1fr;
-        gap:34px;
-        align-items:center;
-      }
+.navrow a{
+  text-decoration:none;
+  color:#222;
+  font-size:clamp(16px, 1.8vw, 22px);
+  font-weight:500;
+}
 
-      /* Logo circle */
-      .logo{
-        width:112px;
-        height:112px;
-        border-radius:999px;
-        background:#fff;
-        display:grid;
-        place-items:center;
-        text-align:center;
-        font-weight:700;
-        line-height:1.1;
-        border:2px solid rgba(0,0,0,.08);
-      }
+/* hamburger menu icon on right side */
+.hamburger{
+  width:clamp(30px, 3vw, 38px);
+  height:clamp(22px, 2.2vw, 28px);
+  display:grid;
+  gap:6px;
+  margin-left:10px;
+}
 
-      /* Summary of finacial overview*/
-      .summary{
-        background: #3A7BD5;
-        border-radius:6px;
-        min-height:360px;
-        display:grid;
-        place-items:center;
-        padding:26px;
-      }
-      .summary h2{
-        margin:0;
-        font-size:46px;
-        font-weight:500;
-        text-align:center;
-      }
-      .summary h2 small{
-        display:block;
-        margin-top:14px;
-        font-size:34px;
-        font-weight:500;
-      }
+.hamburger span{
+  display:block;
+  height:3px;
+  background:#111;
+  border-radius:2px;
+}
 
-      /* Action buttons */
-      .actions{
-        display:flex;
-        flex-direction:column;
-        gap:28px;
-        align-items:flex-start;
-      }
-      .btn{
-        background:var(--btn);
-        color:#fff;
-        border:0;
-        border-radius:6px;
-        padding:16px 28px;
-        font-size:20px;
-        font-weight:600;
-        cursor:pointer;
-        box-shadow:0 1px 0 rgba(255,255,255,.15) inset;
-      }
-      .btn:active{ transform:translateY(1px); }
+/* Main Content area */
+.content{
+  background:#f7f9fc;
+  padding:
+    clamp(20px, 3vw, 36px)
+    clamp(16px, 3vw, 34px)
+    clamp(24px, 4vw, 42px);
+  position:relative;
+  overflow:hidden;
+}
 
-      /* Transaction list card */
-      .list-card{
-        background:var(--card);
-        border-radius:8px;
-        border:3px solid rgba(0,0,0,.35);
-        padding:18px;
-        width:100%;
-        /* max-width:520px; */
-        margin-left:auto;
-      }
-      .list-inner{
-        border:3px solid rgba(0,0,0,.25);
-        border-radius:8px;
-        padding:18px 18px 14px;
-      }
-      .list-title{
-        border:3px solid rgba(0,0,0,.25);
-        border-radius:8px;
-        padding:18px;
-        text-align:center;
-        font-weight:600;
-        color:#333;
-        background:#fff;
-        margin-bottom:18px;
-      }
-      .lines{
-        display:grid;
-        gap:10px;
-      }
-      .line{
-        height:10px;
-        border-radius:999px;
-        background:#cfcfcf;
-      }
+.layout{
+  display:grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  gap:clamp(16px, 2.4vw, 34px);
+  align-items:center;
+}
 
-      /* Responsiveness */
-      @media (max-width: 1100px){
-        .layout{
-          grid-template-columns: 140px 1fr;
-          grid-template-rows: auto auto auto;
-          align-items:start;
-        }
-        .actions{ order:3; }
-        .list-card{ order:4; max-width:none; width:100%; }
-        .summary{ min-height:300px; }
-      }
+/* Logo circle */
+.logo{
+  width:clamp(80px, 8vw, 112px);
+  aspect-ratio:1 / 1;
+  border-radius:50%;
+  background:#fff;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  font-weight:700;
+  line-height:1.1;
+  border:2px solid rgba(0,0,0,.08);
+}
 
-      @media (max-width: 720px){
-        .navrow{
-          justify-content:space-between;
-          gap:18px;
-        }
-        .navrow a{ font-size:18px; }
-        .summary h2{ font-size:34px; }
-        .summary h2 small{ font-size:26px; }
-        .layout{ grid-template-columns: 1fr; }
-        .logo{ width:96px; height:96px; }
-        .actions{ align-items:stretch; }
-        .btn{ width:100%; text-align:center; }
-        .list-card{ margin-left:0; }
-      }
+/* Summary of financial overview */
+.summary{
+  background:#3A7BD5;
+  border-radius:6px;
+  min-height:clamp(220px, 30vw, 360px);
+  display:grid;
+  place-items:center;
+  padding:clamp(16px, 2.2vw, 26px);
+}
+
+.summary h2{
+  margin:0;
+  font-size:clamp(28px, 3.2vw, 46px);
+  font-weight:500;
+  text-align:center;
+}
+
+.summary h2 small{
+  display:block;
+  margin-top:14px;
+  font-size:clamp(20px, 2.4vw, 34px);
+  font-weight:500;
+}
+
+/* Action buttons */
+.actions{
+  display:flex;
+  flex-direction:column;
+  gap:clamp(16px, 2vw, 28px);
+  align-items:flex-start;
+}
+
+.btn{
+  background:var(--btn);
+  color:#fff;
+  border:0;
+  border-radius:6px;
+  padding:clamp(12px, 1.4vw, 16px) clamp(18px, 2vw, 28px);
+  font-size:clamp(16px, 1.6vw, 20px);
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:0 1px 0 rgba(255,255,255,.15) inset;
+}
+
+.btn:active{
+  transform:translateY(1px);
+}
+
+/* Transaction list card */
+.list-card{
+  background:var(--card);
+  border-radius:8px;
+  border:3px solid rgba(0,0,0,.35);
+  padding:clamp(12px, 1.6vw, 18px);
+  width:100%;
+  margin-left:auto;
+}
+
+.list-inner{
+  border:3px solid rgba(0,0,0,.25);
+  border-radius:8px;
+  padding:
+    clamp(12px, 1.6vw, 18px)
+    clamp(12px, 1.6vw, 18px)
+    clamp(10px, 1.2vw, 14px);
+}
+
+.list-title{
+  border:3px solid rgba(0,0,0,.25);
+  border-radius:8px;
+  padding:clamp(12px, 1.6vw, 18px);
+  text-align:center;
+  font-weight:600;
+  color:#333;
+  background:#fff;
+  margin-bottom:18px;
+  font-size:clamp(16px, 1.5vw, 22px);
+}
+
+.lines{
+  display:grid;
+  gap:10px;
+}
+
+.line{
+  height:10px;
+  border-radius:999px;
+  background:#cfcfcf;
+}
+
+/* Responsiveness */
+@media (max-width:1100px){
+  .layout{
+    grid-template-columns:0.8fr 1.8fr;
+    grid-template-rows:auto auto auto;
+    align-items:start;
+  }
+
+  .actions{
+    order:3;
+  }
+
+  .list-card{
+    order:4;
+    max-width:none;
+    width:100%;
+  }
+
+  .summary{
+    min-height:clamp(220px, 34vw, 300px);
+  }
+}
+
+@media (max-width:720px){
+  .navrow{
+    justify-content:space-between;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+
+  .navrow a{
+    font-size:clamp(16px, 4vw, 18px);
+  }
+
+  .summary h2{
+    font-size:clamp(28px, 8vw, 34px);
+  }
+
+  .summary h2 small{
+    font-size:clamp(20px, 6vw, 26px);
+  }
+
+  .layout{
+    grid-template-columns:1fr;
+  }
+
+  .logo{
+    width:clamp(72px, 24vw, 96px);
+  }
+
+  .actions{
+    align-items:stretch;
+  }
+
+  .btn{
+    width:100%;
+    text-align:center;
+  }
+
+  .list-card{
+    margin-left:0;
+  }
+}
+
+.transaction-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap:12px;
+}
+
+.transaction-item{
+  border:2px solid rgba(0,0,0,.15);
+  border-radius:10px;
+  padding:12px 14px;
+  background:#fff;
+  cursor:pointer;
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+.transaction-item:hover{
+  transform:translateY(-1px);
+  box-shadow:0 6px 16px rgba(0,0,0,.08);
+  border-color:rgba(58,123,213,.45);
+}
+
+.transaction-item:focus{
+  outline:2px solid #3A7BD5;
+  outline-offset:2px;
+}
+
+.transaction-main{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
+.transaction-name{
+  font-weight:600;
+  word-break:break-word;
+}
+
+.transaction-amount{
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.transaction-description{
+  margin-top:8px;
+  color:#555;
+  font-size:0.95rem;
+  line-height:1.4;
+  word-break:break-word;
+}

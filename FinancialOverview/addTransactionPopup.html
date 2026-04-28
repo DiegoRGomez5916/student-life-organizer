@@ -1,13 +1,29 @@
+<!--
+< ********************************************************
+< Project: Student Life Organizer
+< File: addTransaction.html
+< Programer(s): Dyllan Cummings
+< Purpose: 
+<     - Create the transaction window
+<     - handle functionality for loading transaction, submitting transaction, and deleting transaction
+< Date Due: 4/29/26
+< **********************************************************
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add Transaction</title>
+  <title>Transaction</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
+      margin: 0;
+    }
+
+    h2 {
+      margin-top: 0;
     }
 
     .form-group {
@@ -20,26 +36,40 @@
       font-weight: bold;
     }
 
-    input, textarea {
+    input,
+    textarea {
       width: 100%;
       padding: 8px;
       box-sizing: border-box;
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
     }
 
     .button-group {
       margin-top: 16px;
       display: flex;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     button {
       padding: 10px 16px;
       cursor: pointer;
     }
+
+    #deleteBtn {
+      background: #b42318;
+      color: #fff;
+      border: 0;
+    }
   </style>
 </head>
 <body>
-  <h2>Add Transaction</h2>
+  <h2 id="popupTitle">Add Transaction</h2>
 
   <div class="form-group">
     <label for="transactionName">Name</label>
@@ -57,24 +87,116 @@
   </div>
 
   <div class="button-group">
-    <button onclick = "addToList(); window.close()" id="submitBtn">Submit</button>
-    <button onclick = "window.close(transactionList)" id="closeBtn" type="button">Close</button>
+    <button id="submitBtn" type="button">Submit</button>
+    <button id="deleteBtn" type="button" style="display:none;">Delete</button>
+    <button id="closeBtn" type="button">Close</button>
   </div>
 
-  <!-- <script type="module" src="popup.js"></script> -->
- <script>
-  function addToList() {
-    const name = document.getElementById("transactionName").value;
-    const price = parseFloat(document.getElementById("transactionPrice").value);
+  <script>
+    const params = new URLSearchParams(window.location.search); //Gets query string from current url
+    const mode = params.get("mode") || "add"; // gets the current mode of window
+      // if mode == edit, then is the edit transaction window
+      // else is the add transaction window
+    const index = params.get("index");
 
-    if (!name || isNaN(price)) {
-      alert("Please fill in a name and price.");
-      return;
+    // gets the elements of each object
+    const popupTitle = document.getElementById("popupTitle");
+    const submitBtn = document.getElementById("submitBtn");
+    const deleteBtn = document.getElementById("deleteBtn");
+    const closeBtn = document.getElementById("closeBtn");
+
+    const nameInput = document.getElementById("transactionName");
+    const descriptionInput = document.getElementById("transactionDescription");
+    const priceInput = document.getElementById("transactionPrice");
+
+    function loadTransactionForEdit() {
+      // loadTransactionForEdit loads the values of the selected tranaction
+      // into the text entry boxes
+
+      if (mode !== "edit" || index === null || !window.opener || !window.opener.tracker) {
+        // if popup is not in edit mode, there is no parent window, or no tracker object
+        return; // quit the function
+      }
+
+      const transaction = window.opener.tracker.getTransaction(Number(index)); // gets transaction at given index
+
+      if (!transaction) { // if there is no transaction
+        alert("Transaction not found."); // alert user
+        window.close(); // close edit transaction window
+        return; // quit function
+      }
+
+      popupTitle.textContent = "Edit Transaction"; // set window title to Edit Transaction
+      submitBtn.textContent = "Save Changes"; // changes the submit button to "Save Changes"
+      deleteBtn.style.display = "inline-block"; // delete button is now visable
+
+      // insert transaction fields into text entry boxes
+      // if field is missing, insert an empty string
+      nameInput.value = transaction.name || "";
+      descriptionInput.value = transaction.description || "";
+      priceInput.value = transaction.amount ?? ""; // NOTE FOR ME: ?? is used because 0 is allowed
     }
 
-    window.opener.tracker.addTransaction(name, price);
-    window.close();
-  }
-</script>
+    function submitTransaction() {
+      // If in edit mode, function edits  the transactin at given index
+      // If in add mode, function appends a new transaction to the FinancialTracker object (tracker)
+
+      // gets name, description and price
+      // Trims spaces at start and end
+      const name = nameInput.value.trim();
+      const description = descriptionInput.value.trim();
+      const price = parseFloat(priceInput.value); // converts to decimal value
+
+      // if name is empty, alert and return
+      if (!name || Number.isNaN(price)) {
+        alert("Please fill in a valid name and price.");
+        return;
+      }
+
+      // makes sure both the main window and the tracker object exist
+      if (!window.opener || !window.opener.tracker) {
+        alert("Main tracker window is not available.");
+        return;
+      }
+
+      if (mode === "edit" && index !== null) {
+        // if in edit mode and index exists, edit transaction
+        window.opener.tracker.editTransaction(Number(index), name, price, description);
+      } else {
+        // add new trancaction
+        window.opener.tracker.addTransaction(name, price, description);
+      }
+
+      window.close(); // close popup window
+    }
+
+    function deleteTransaction() {
+      // deleteTransaction deletes a transaction at a given index
+
+      // checks if main window, tracker, and index exists
+      // if not, show alert and return
+      if (!window.opener || !window.opener.tracker || index === null) {
+        alert("Unable to delete transaction.");
+        return;
+      }
+
+      const confirmed = window.confirm("Delete this transaction?"); // Prompts the user with a confirmation window
+      
+      if (!confirmed) // if user says no, quit function (transaction is not deleted)
+        return;
+
+      window.opener.tracker.deleteTransaction(Number(index)); // delete transaction at index
+      window.close(); // close edit window
+    }
+
+    submitBtn.addEventListener("click", submitTransaction);
+      // when submit button is clicked, call submitTransaction()
+    deleteBtn.addEventListener("click", deleteTransaction);
+      // when delete button is clicked, call deleteTransaction()
+    closeBtn.addEventListener("click", () => window.close());
+      // when close button is clicked, close the window
+
+    loadTransactionForEdit();
+  </script>
 </body>
 </html>
