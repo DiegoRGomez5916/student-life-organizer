@@ -10,6 +10,10 @@ class FinancialTracker {
   // FinancialTracker class serves as an array for the transaction elements
   // *********************************************************************
   // FinancialTracker functions:
+  // loadTransactions()
+  //    - loads transactions stored in local storage
+  // saveTransactions()
+  //    - saves transactions to local storage
   // addTransaction(name, amount, description = "")
   //    - appends transaction to list
   //    - updates ui
@@ -27,14 +31,48 @@ class FinancialTracker {
   //    - clears the current Transaction List
   //    - creates a new list with updated/ added transactions
   //    - updates the Total Balance
+  // updateHomeUI()
+  //    - updates the ui on the home page
+  //    - updates balance total
+  //    - updates the 3 most recent transactions
   constructor() {
-    this.transactions = []; // creates empty array upon creation
+    //this.transactions = []; // creates empty array upon creation
+    this.transactions = this.loadTransactions();
+    this.updateUI(); // update the ui upon loading from local storage
+  }
+
+
+  loadTransactions() {
+    // load transactions from local storage
+
+    const saved = localStorage.getItem("transactions");
+
+    if (!saved) {
+      return []; // if nothing is saved, return empty array
+    }
+
+    try {
+      return JSON.parse(saved);
+    } catch (error) {
+      console.error("Could not parse saved transactions:", error);
+      return [];
+    }
+  }
+
+  saveTransactions() {
+    // saves transactions to local storage
+    localStorage.setItem("transactions", JSON.stringify(this.transactions));
   }
 
   addTransaction(name, amount, description = "") {
-    this.transactions.push({name, amount: Number(amount), description});
+    //this.transactions.push({name, amount: Number(amount), description});
+    this.transactions.unshift({name, amount: Number(amount), description});
       // creates a new transaction and appends it to the list
+
+    this.saveTransactions(); // store updated array
+    
     this.updateUI(); // updates the ui
+    this.updateHomeUI(); // update home page
   }
 
   editTransaction(index, name, amount, description = "") {
@@ -44,6 +82,7 @@ class FinancialTracker {
     this.transactions[index] = {name, amount: Number(amount), description};
       // changes transaction at index to the updated information
 
+    this.saveTransactions(); // store updated array
     this.updateUI(); // update ui
   }
 
@@ -52,6 +91,8 @@ class FinancialTracker {
       return; // if index is out of bounds, return
 
     this.transactions.splice(index, 1); // removes the indexed element
+
+    this.saveTransactions(); // store updated array
     this.updateUI(); // updates ui
   }
 
@@ -71,10 +112,50 @@ class FinancialTracker {
     return total;
   }
 
+  updateHomeUI(){
+    // updates the home ui with most recent balance and transactions
+    if (!document.getElementById("BalanceTotal"))// if not in home page
+      return // quit function
+
+    // set transactions to null
+    let transaction1 = null;
+    let transaction2 = null;
+    let transaction3 = null;
+
+    const t1 = this.getTransaction(0);
+    const t2 = this.getTransaction(1);
+    const t3 = this.getTransaction(2);
+
+    const balance = this.getBalance();
+
+    // if t's arn't null, then append amount to the name
+    if(t1)
+      transaction1 = t1.name + ": $" + t1.amount;
+    if(t2)
+      transaction2 = t2.name + ": $" + t2.amount;
+    if(t3)
+      transaction3 = t3.name + ": $" + t3.amount;
+
+    document.getElementById("BalanceTotal").textContent = "$" + balance.toFixed(2);
+      // print balance to BalanceTotal
+
+    // if the transaction isn't null, print to list
+    if(transaction1)
+      document.getElementById("t1").textContent = transaction1;
+    if(transaction2)
+      document.getElementById("t2").textContent = transaction2;
+    if(transaction3)
+      document.getElementById("t3").textContent = transaction3;
+  }
+
   updateUI() {
     // gets reference to TransactionList and Balance
     const list = document.getElementById("transactionList");
     const balance = document.getElementById("balance");
+
+    if(!list || !balance) {
+      return;
+    }
 
     list.innerHTML = ""; // clears the current printed list
 

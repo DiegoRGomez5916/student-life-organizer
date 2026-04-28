@@ -54,17 +54,30 @@
         <h2>Financial Overview</h2>
 
         <p>Monthly total:</p>
-        <h3>$1234</h3>
+        <h3 id = "BalanceTotal"></h3>
 
         <p>Recent transactions:</p>
 
         <ul>
-            <li>Groceries</li>
-            <li>Books</li>
-            <li>Gas</li>
+            <li id = "t1"></li>
+            <li id = "t2"></li>
+            <li id = "t3"></li>
         </ul>
+        <script>
+            function addTransaction(){
+                // opens transaction window from homepage
+                const url = `../FinancialOverview/addTransactionPopup.html`; // create url
 
-        <button>Add Transaction</button>
+                window.open(url, "transactionPopupWindow", "width=500,height=560,left=200,top=150,resizable=yes,scrollbars=yes"); 
+                    // open transaction popup window
+            }
+        </script>
+
+        <button onclick = "addTransaction()">Add Transaction</button>
+        <script src="../FinancialOverview/financialTracker.js"></script>
+        <script>
+            window.tracker.updateHomeUI(); // update balance and recent transactions
+        </script>
     </div>
 
 </main>
