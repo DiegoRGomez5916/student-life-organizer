@@ -35,7 +35,7 @@
 
       window.open(url, "transactionPopupWindow", "width=500,height=560,left=200,top=150,resizable=yes,scrollbars=yes"); 
         // open transaction popup window
-}
+  }
     </script>
   </head>
 
@@ -71,6 +71,16 @@
           <section class="list-card" aria-label="Transaction list">
             <div class="list-inner">
               <div class="list-title">Transaction<br />List</div>
+              <div class="search-wrap">
+                <label for="transactionSearch" class="sr-only">Search transactions</label>
+                <input
+                  type="text"
+                  id="transactionSearch"
+                  class="search-input"
+                  placeholder="Search transactions..."
+                  aria-label="Search transactions"
+                />
+              </div>
               <ul id="transactionList" class="transaction-list"></ul>
             </div>
           </section>

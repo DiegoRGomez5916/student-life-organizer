@@ -27,6 +27,7 @@ class FinancialTracker {
   //    - returns transaction at index
   // getBalance()
   //    - returns sum total of amounts
+  //--------------------------------------------------------------------
   // updateUI()
   //    - clears the current Transaction List
   //    - creates a new list with updated/ added transactions
@@ -35,10 +36,20 @@ class FinancialTracker {
   //    - updates the ui on the home page
   //    - updates balance total
   //    - updates the 3 most recent transactions
+  // ---------------------------------------------------------------------
+  // setUpSearch()
+  //    - checks for search bar
+  //    - listens for every addition and deletion
+  //    - if it exists, send contents to filterTransactions()
+  // filterTransactions(searchTerm = "")
+  //    - filters out all transactions that do not include the search condition
+  //    - checks: name, price, and description
+  //    - if search bar is empty, show all
   constructor() {
     //this.transactions = []; // creates empty array upon creation
     this.transactions = this.loadTransactions();
     this.updateUI(); // update the ui upon loading from local storage
+    this.setupSearch();
   }
 
 
@@ -148,10 +159,49 @@ class FinancialTracker {
       document.getElementById("t3").textContent = transaction3;
   }
 
+// SEARCH FUNCTIONS-------------------------------
+  setupSearch(){
+    // function checks for search bar and sends contents to filterTransactions()
+
+    const searchInput = document.getElementById("transactionSearch");
+
+    if (!searchInput) {
+      return; // if the search object doesn't exist (user on home page), quit function
+    }
+
+    searchInput.addEventListener("input", () => { // listens for every addition and deletion in search bar
+      this.filterTransactions(searchInput.value); // sends search condition to filter transactions
+    });
+  }
+
+  filterTransactions(searchTerm = ""){
+    // filters out transactions that do not include search term
+    // if search bar is empty, show all
+
+    const items = document.querySelectorAll(".transaction-item"); // gets all transactions, stores in items
+    const normalizedSearch = searchTerm.toLowerCase().trim();
+      // sets search value to lowercase
+      // trim empty spaces on front and back
+
+    items.forEach((item) => {
+      const text = item.textContent.toLowerCase();
+        // concatinates all text in transaction
+        // name + price + description
+
+      if (text.includes(normalizedSearch)) { // if transaction includes the search term
+        item.style.display = ""; // show it
+      } else {
+        item.style.display = "none";
+      }
+    });
+  }
+//-----------------------------------------------------
+
   updateUI() {
     // gets reference to TransactionList and Balance
     const list = document.getElementById("transactionList");
     const balance = document.getElementById("balance");
+    const searchInput = document.getElementById("transactionSearch"); // Search bar
 
     if(!list || !balance) {
       return;
@@ -187,6 +237,10 @@ class FinancialTracker {
     }
 
     balance.textContent = `Total Balance: $${this.getBalance().toFixed(2)}`;
+
+    if (searchInput){
+      this.filterTransactions(searchInput.value);
+    }
       // calls the getBalance function, displays at 2 decimal places
   }
 }
