@@ -47,7 +47,7 @@ function renderNotes(list) {
         return;
       }
 
-      window.location.href = `./noteEditor.html?id=${encodeURIComponent(note.id)}`;
+      window.location.href = `./notesEditor.html?id=${encodeURIComponent(note.id)}`;
     });
 
     card.addEventListener("keydown", (event) => {
@@ -163,7 +163,7 @@ createNoteBtn.addEventListener("click", () => {
   notes.unshift(newNote);
 
   saveNotes();
-  window.location.href = `./noteEditor.html?id=${encodeURIComponent(newNote.id)}`;
+  window.location.href = `./notesEditor.html?id=${encodeURIComponent(newNote.id)}`;
 });
 
 cancelNoteBtn.addEventListener("click", () => {
