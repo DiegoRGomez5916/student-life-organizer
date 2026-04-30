@@ -1,4 +1,4 @@
-class Event{
+class Entry{
     constructor(title='', date='', start='', end=''){
         this.title = title;
         this.date = date;

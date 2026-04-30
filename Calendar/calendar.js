@@ -1,25 +1,38 @@
 class Calendar{
-    constructor(events=[]){
-        this.events = events;
+    constructor(){
+        this.entrys = this.loadEntrys();
         this.today = new Date();
     }
 
-    sortEvents(){
-        this.events.sort((a, b) => new Date(a.date) - new Date(b.date));
+    loadEntrys(){
+        const entryData = localStorage.getItem('entrys');
+        if(entryData){
+            return JSON.parse(entryData);
+        }else{
+            return [];
+        }
     }
 
-    getUpcomingEvents(){
+    saveEntrys(){
+        localStorage.setItem('entrys', JSON.stringify(this.entrys));
+    }
+
+    sortEntrys(){
+        this.entrys.sort((a, b) => new Date(a.date) - new Date(b.date));
+    }
+
+    getUpcomingEntrys(){
         const today = new Date();
-        let index = 0
-        this.sortEvents();
-        for(let i = 0; i < this.events.length; i++){
-            if(today <= new Date(this.events[i].getDate() + 'T' + this.events[i].getStart() + ':00')){
+        let index = 0;
+        this.sortEntrys();
+        for(let i = 0; i < this.entrys.length; i++){
+            if(today <= new Date(this.entrys[i].date + 'T' + this.entrys[i].start + ':00')){
                 break;
             }else{
                 index++;
             }
         }
-        return this.events.slice(index, index + 3);
+        return this.entrys.slice(index, index + 3);
     }
 
     getFirstDayOfMonth(month){
@@ -39,35 +52,35 @@ class Calendar{
         return new Date(year, month, day).getDate();
     }
 
-    getTodaysEvents(day){
-        return this.events.filter(x => {
-            return x.getDate() == day;
+    getTodaysEntrys(day){
+        return this.entrys.filter(x => {
+            return x.date == day;
         });
     }
 
-    makeDay(events, num){
-        let eventString = ``;
-        for(let i = 0; i < events.length; i++){
-            if (events.length != 0){
-                eventString = eventString + `<li class="event" index="${i}" onclick="updateEvent(this)">${events[i].getTitle()}</li>`;
+    makeDay(entrys, num){
+        let entryString = ``;
+        for(let i = 0; i < entrys.length; i++){
+            if (entrys.length != 0){
+                entryString = entryString + `<li class="entry" index="${i}" onclick="updateEntry(this)">${entrys[i].title}</li>`;
             }
         }
         return `<div class="day">
                     <p class="date">${num}</p>
-                    <ul class="event-list">${eventString}</ul>
+                    <ul class="entry-list">${entryString}</ul>
                 </div>`
     }
 
-    makePaddingDay(events, num){
-        let eventString = ``;
-        for(let i = 0; i <= events.length; i++){
-            if (events.length != 0){
-                eventString = eventString + `<li class="event">${events[i].getTitle()}</li>`;
+    makePaddingDay(entrys, num){
+        let entryString = ``;
+        for(let i = 0; i <= entrys.length; i++){
+            if (entrys.length != 0){
+                entryString = entryString + `<li class="entry">${entrys[i].getTitle()}</li>`;
             }
         }
         return `<div class="day">
                     <p class="padding-date">${num}</p>
-                    <ul class="event-list">${eventString}</ul>
+                    <ul class="entry-list">${entryString}</ul>
                 </div>`;
     }
 
@@ -78,25 +91,34 @@ class Calendar{
         for(let i = 0; i > -firstDay; i--){
             let dateStr = this.getDateStr(year, month, i);
             let dayNum = this.getDayNum(year, month, i);
-            let todaysEvents = this.getTodaysEvents(dateStr);
-            monthString = this.makePaddingDay(todaysEvents, dayNum) + monthString;
+            let todaysEntrys = this.getTodaysEntrys(dateStr);
+            monthString = this.makePaddingDay(todaysEntrys, dayNum) + monthString;
         }
         for(let i = 1; i < lastDay + 1; i++){
             let dateStr = this.getDateStr(year, month, i);
             let dayNum = this.getDayNum(year, month, i);
-            let todaysEvents = this.getTodaysEvents(dateStr);
-            monthString = monthString + this.makeDay(todaysEvents, dayNum);
+            let todaysEntrys = this.getTodaysEntrys(dateStr);
+            monthString = monthString + this.makeDay(todaysEntrys, dayNum);
         }
         return monthString;
     }
 
-    addEvent(newEvent){
-        this.events.push(newEvent);
+    addEntry(newEntry){
+        this.entrys.push(newEntry);
+        this.saveEntrys();
     }
 
-    deleteEvent(index){
-        this.events.splice(index, 1);
+    deleteEntry(index){
+        this.entrys.splice(index, 1);
+        this.saveEntrys();
     }
 }
 
-window.calendar = new Calendar();
+class Entry{
+    constructor(title='', date='', start='', end=''){
+        this.title = title;
+        this.date = date;
+        this.start = start;
+        this.end = end;
+    }
+}

@@ -76,7 +76,7 @@
     const saveEditBtn = document.getElementById("saveEditBtn");
     const cancelEditBtn = document.getElementById("cancelEditBtn");
 
-    const notes = [];
+    const notes = JSON.parse(localStorage.getItem("notes")) ?? [];
     let deleteMode = false;
     let editMode = false;
     let currentKeyword = "";
@@ -186,10 +186,12 @@
         return;
       }
 
-      notes.push({
+      notes.unshift({
         name: trimmedName,
         selected: false
       });
+
+      localStorage.setItem("notes", JSON.stringify(notes));
 
       closeNoteForm();
       updateView();
@@ -266,6 +268,8 @@
       resetSelections();
       updateView();
     });
+
+    updateView();
   </script>
 </body>
 </html>
