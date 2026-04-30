@@ -39,6 +39,7 @@ class FinancialTracker {
     //this.transactions = []; // creates empty array upon creation
     this.transactions = this.loadTransactions();
     this.updateUI(); // update the ui upon loading from local storage
+    this.setupSearch();
   }
 
 
@@ -112,6 +113,44 @@ class FinancialTracker {
     return total;
   }
 
+  // SEARCH FUNCTIONS-------------------------------
+  setupSearch(){
+    // function checks for search bar and sends contents to filterTransactions()
+
+    const searchInput = document.getElementById("transactionSearch");
+
+    if (!searchInput) {
+      return; // if the search object doesn't exist (user on home page), quit function
+    }
+
+    searchInput.addEventListener("input", () => { // listens for every addition and deletion in search bar
+      this.filterTransactions(searchInput.value); // sends search condition to filter transactions
+    });
+  }
+
+  filterTransactions(searchTerm = ""){
+    // filters out transactions that do not include search term
+    // if search bar is empty, show all
+
+    const items = document.querySelectorAll(".transaction-item"); // gets all transactions, stores in items
+    const normalizedSearch = searchTerm.toLowerCase().trim();
+      // sets search value to lowercase
+      // trim empty spaces on front and back
+
+    items.forEach((item) => {
+      const text = item.textContent.toLowerCase();
+        // concatinates all text in transaction
+        // name + price + description
+
+      if (text.includes(normalizedSearch)) { // if transaction includes the search term
+        item.style.display = ""; // show it
+      } else {
+        item.style.display = "none";
+      }
+    });
+  }
+//-----------------------------------------------
+
   updateHomeUI(){
     // updates the home ui with most recent balance and transactions
     if (!document.getElementById("BalanceTotal"))// if not in home page
@@ -152,6 +191,7 @@ class FinancialTracker {
     // gets reference to TransactionList and Balance
     const list = document.getElementById("transactionList");
     const balance = document.getElementById("balance");
+    const searchInput = document.getElementById("transactionSearch"); // Search bar
 
     if(!list || !balance) {
       return;
@@ -188,6 +228,10 @@ class FinancialTracker {
 
     balance.textContent = `Total Balance: $${this.getBalance().toFixed(2)}`;
       // calls the getBalance function, displays at 2 decimal places
+
+    if (searchInput){
+      this.filterTransactions(searchInput.value);
+    }
   }
 }
 

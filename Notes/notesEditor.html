@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>Note Editor</title>
+  <link rel="stylesheet" href="./notes.css" />
+</head>
+
+<body>
+  <div class="layout">
+    <main class="content">
+      <div class="header">
+        <div class="header-left">
+          <h1 class="site-title">Student Life Organizer</h1>
+          <h2 class="page-title">Note Editor</h2>
+        </div>
+
+        <div class="header-right">
+          <a href="./viewNotes.html">Back to Notes</a>
+        </div>
+      </div>
+
+      <div class="editor-page">
+        <div class="editor-toolbar">
+          <input type="text" id="editorTitleInput" class="editor-title-input" placeholder="Title" />
+
+          <div class="editor-toolbar-actions">
+            <button type="button" id="addPageBtn">Add Page</button>
+            <button type="button" id="deletePageBtn">Delete Page</button>
+          </div>
+        </div>
+
+        <div class="editor-box">
+          <div id="editorPages"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="./notesEditor.js"></script>
+</body>
+</html>

@@ -21,8 +21,7 @@
                 </div>
             </nav>
             <aside class="side-bar">
-                <button class="add-event" onclick="openAddEventWindow()">Add Event</button>
-                <button class="add-event" onclick="console.log(window.calendar.events);console.log(window.calendar.getUpcomingEvents())">events</button>
+                <button class="add-entry" onclick="openAddEntryWindow()">Add Event</button>
             </aside>
             <div class="calendar">
                 <div class="month-selector">
@@ -39,12 +38,16 @@
                     <div class="date">FRI</div>
                     <div class="date">SAT</div>
                 </div>
-                <div class="events" id="events">
+                <div class="entrys" id="entrys">
                 </div>
             </div>
         </div>
     </body>
     <script src="calendar.js"></script>
-    <script src="event.js"></script>
     <script src="buttonFunctions.js"></script>
+    <script>
+        window.calendar = new Calendar();
+        updateUI();
+        updateMonthYear();
+    </script>
 </html>

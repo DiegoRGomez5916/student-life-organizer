@@ -26,9 +26,9 @@
         <h2>Recent Notes</h2>
 
         <ul>
-            <li>Recent note 1</li>
-            <li>Recent note 2</li>
-            <li>Recent note 3</li>
+            <li id="note1">Recent note 1</li>
+            <li id="note2">Recent note 2</li>
+            <li id="note3"></li>
         </ul>
 
         <button>Add Note</button>
@@ -39,13 +39,10 @@
     <div class="card">
         <h2>Upcoming Events</h2>
 
-        <ul>
-            <li>Upcoming event 1</li>
-            <li>Upcoming event 2</li>
-            <li>Upcoming event 3</li>
+        <ul id="upcomingEventList">
         </ul>
 
-        <button>Add Event</button>
+        <button onclick="openAddEntryWindow();updateUpcomingEntries();">Add Event</button>
     </div>
 
 
@@ -53,7 +50,7 @@
     <div class="card">
         <h2>Financial Overview</h2>
 
-        <p>Monthly total:</p>
+        <p>Balance Total:</p>
         <h3 id = "BalanceTotal"></h3>
 
         <p>Recent transactions:</p>
@@ -81,6 +78,21 @@
     </div>
 
 </main>
+    <script src="../Calendar/calendar.js"></script>
+    <script src="../Calendar/buttonFunctions.js"></script>
+    <script>
+        window.calendar = new Calendar();
+        function updateUpcomingEntries(){
+            const eventList = document.getElementById('upcomingEventList');
+            const upcomingEvents = window.calendar.getUpcomingEntrys();
+            eventList.innerHTML = `<li>${upcomingEvents[0].title}: ${upcomingEvents[0].date}</li><li>${upcomingEvents[1].title}: ${upcomingEvents[1].date}</li><li>${upcomingEvents[2].title} ${upcomingEvents[2].date}</li>`;
+        }
+        updateUpcomingEntries();
+        let notes = JSON.parse(localStorage.getItem("notes"));
+        document.getElementById('note1').innerText = notes[0].name;
+        document.getElementById('note2').innerText = notes[1].name;
+        document.getElementById('note3').innerText = notes[2].name;
+    </script>
 
 </body>
 </html>

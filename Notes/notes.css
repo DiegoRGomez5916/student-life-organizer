@@ -15,6 +15,9 @@ body {
 }
 
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -59,36 +62,6 @@ body {
   font-size: 22px;
   font-weight: 700;
   font-family: 'Poppins', sans-serif;
-}
-
-#humberger {
-  position: relative;
-  width: 42px;
-  height: 30px;
-  display: inline-block;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-#humberger div {
-  position: absolute;
-  left: 0;
-  width: 42px;
-  height: 4px;
-  background-color: #000000;
-  border-radius: 2px;
-}
-
-#humberger div:nth-of-type(1) {
-  top: 0;
-}
-
-#humberger div:nth-of-type(2) {
-  top: 13px;
-}
-
-#humberger div:nth-of-type(3) {
-  top: 26px;
 }
 
 .body {
@@ -224,8 +197,7 @@ button {
   display: none;
 }
 
-#noteForm,
-#editForm {
+#noteForm {
   display: none;
   position: fixed;
   top: 50%;
@@ -241,13 +213,11 @@ button {
   z-index: 1000;
 }
 
-#noteForm.show,
-#editForm.show {
+#noteForm.show {
   display: flex;
 }
 
-#noteNameInput,
-#editNoteInput {
+#noteNameInput {
   padding: 8px 10px;
   width: 220px;
   height: 44px;
@@ -258,4 +228,93 @@ button {
   border-radius: 10px;
   background-color: #FFFFFF;
   box-sizing: border-box;
+}
+
+.editor-page {
+  min-height: calc(100vh - 112px);
+  padding: 12px 24px 24px 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-toolbar {
+  position: sticky;
+  top: 112px;
+  z-index: 15;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  padding: 8px 0;
+  background-color: #F7F9FC;
+}
+
+.editor-title-input {
+  width: min(420px, 45vw);
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid #D6DEEA;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  color: #333333;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+
+.editor-toolbar-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.editor-toolbar button {
+  min-width: 120px;
+  height: 44px;
+  font-size: 16px;
+}
+
+#editorPages {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.note-page {
+  width: 100%;
+}
+
+.note-page-label {
+  margin-bottom: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  color: #333333;
+}
+
+.note-page-label.active {
+  color: #3A7BD5;
+}
+
+.editor-textarea {
+  width: 100%;
+  height: calc(100vh - 210px);
+  min-height: 420px;
+  padding: 10px;
+  border: 2px solid #3A7BD5;
+  box-sizing: border-box;
+  resize: none;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  color: #333333;
+  background-color: #FFFFFF;
 }

@@ -1,24 +1,24 @@
-function openAddEventWindow(){
+function openAddEntryWindow(){
     window.open(
-    "addEventPopupWindow.html",
+    "../Calendar/addEntryPopupWindow.html",
     "myPopupWindow",
     "width=500,height=500,left=200,top=150,resizable=yes,scrollbars=yes"
     );
 }
 
-function openEventPopupWindow(){
+function openEntryPopupWindow(){
     return window.open(
-        "eventPopupWindow.html",
+        "../Calendar/entryPopupWindow.html",
         "myPopupWindow",
         "width=500,height=500,left=200,top=150,resizable=yes,scrollbars=yes"
     );
 }
 
 function updateUI(){
-    const eventSection = document.getElementById('events');
+    const entrySection = document.getElementById('entrys');
     const monthString = window.calendar.makeMonth(window.calendar.today.getFullYear(), window.calendar.today.getMonth());
-    eventSection.innerHTML = '';
-    eventSection.innerHTML = monthString;
+    entrySection.innerHTML = '';
+    entrySection.innerHTML = monthString;
 }
 
 function updateMonthYear(){
@@ -29,17 +29,17 @@ function updateMonthYear(){
     monthYearSection.innerHTML = month + ' ' + yearNum;
 }
 
-function submitButton(newEvent){
-    const eventTitle = document.getElementById('title').value;
-    const eventDate = document.getElementById('date').value;
-    const eventStartTime = document.getElementById('start').value;
-    const eventEndTime = document.getElementById('end').value;
+function submitButton(newEntry){
+    const entryTitle = document.getElementById('title').value;
+    const entryDate = document.getElementById('date').value;
+    const entryStartTime = document.getElementById('start').value;
+    const entryEndTime = document.getElementById('end').value;
     try{
-        newEvent.setTitle(eventTitle);
-        newEvent.setDate(eventDate);
-        newEvent.setStart(eventStartTime);
-        newEvent.setEnd(eventEndTime);
-        window.opener.calendar.addEvent(newEvent);
+        newEntry.title = entryTitle;
+        newEntry.date = entryDate;
+        newEntry.start = entryStartTime;
+        newEntry.end = entryEndTime;
+        window.opener.calendar.addEntry(newEntry);
         window.close();
     }catch (error){
         alert(error)
@@ -47,16 +47,16 @@ function submitButton(newEvent){
     window.opener.updateUI()
 }
 
-function submitEditButton(newEvent){
-    const eventTitle = document.getElementById('title').value;
-    const eventDate = document.getElementById('date').value;
-    const eventStartTime = document.getElementById('start').value;
-    const eventEndTime = document.getElementById('end').value;
+function submitEditButton(newEntry){
+    const entryTitle = document.getElementById('title').value;
+    const entryDate = document.getElementById('date').value;
+    const entryStartTime = document.getElementById('start').value;
+    const entryEndTime = document.getElementById('end').value;
     try{
-        newEvent.setTitle(eventTitle);
-        newEvent.setDate(eventDate);
-        newEvent.setStart(eventStartTime);
-        newEvent.setEnd(eventEndTime);
+        newEntry.setTitle(entryTitle);
+        newEntry.setDate(entryDate);
+        newEntry.setStart(entryStartTime);
+        newEntry.setEnd(entryEndTime);
         window.close();
     }catch (error){
         alert(error)
@@ -64,15 +64,16 @@ function submitEditButton(newEvent){
     window.opener.updateUI()
 }
 
-function updateEvent(element){
+function updateEntry(element){
     const index = element.getAttribute('index');
-    let newWindow = openEventPopupWindow();
-    newWindow.newEvent = window.calendar.events[index];
+    let newWindow = openEntryPopupWindow();
+    newWindow.newEntry = window.calendar.entrys[index];
     newWindow.newIndex = index;
+    window.calendar.saveEntrys();
 }
 
-function deleteOpenedEvent(index){
-    window.opener.calendar.deleteEvent(index);
+function deleteOpenedEntry(index){
+    window.opener.calendar.deleteEntry(index);
     window.opener.updateUI();
     window.close();
 }
@@ -90,6 +91,3 @@ function lastMonth(){
     updateUI();
     updateMonthYear();
 }
-
-updateUI()
-updateMonthYear()

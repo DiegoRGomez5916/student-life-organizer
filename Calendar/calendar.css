@@ -84,7 +84,7 @@
     justify-content: space-around;
 }
 
-.events{
+.entrys{
     margin: 10px;
     grid-row: 3;
     grid-column: 1 / span 7;
@@ -94,7 +94,7 @@
     gap: 10px;
 }
 
-.event{
+.entry{
     width: 100%;
     background-color: var(--accent-color);
     padding: 5px;
@@ -108,7 +108,7 @@
     background-color: var(--primary-color);
 }
 
-.event-list{
+.entry-list{
     list-style-type: none;
     display: flex;
     flex-direction: column;
