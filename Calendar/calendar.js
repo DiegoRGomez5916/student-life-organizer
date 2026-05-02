@@ -24,21 +24,14 @@ class Calendar{
     getUpcomingEntrys(){
         const today = new Date();
         let index = 0;
-        console.log(this.entrys);
         this.sortEntrys();
-        console.log(this.entrys);
         for(let i = 0; i < this.entrys.length; i++){
-            console.log(this.entrys[i].date);
-            console.log(this.entrys[i].start);
             if(today <= new Date(this.entrys[i].date + 'T' + this.entrys[i].start + ':00')){
-                console.log(index);
                 break;
             }else{
-                console.log(index);
                 index++;
             }
         }
-        console.log(this.entrys.slice(index, index + 3));
         return this.entrys.slice(index, index + 3);
     }
 
@@ -80,9 +73,9 @@ class Calendar{
 
     makePaddingDay(entrys, num){
         let entryString = ``;
-        for(let i = 0; i <= entrys.length; i++){
+        for(let i = 0; i < entrys.length; i++){
             if (entrys.length != 0){
-                entryString = entryString + `<li class="entry">${entrys[i].getTitle()}</li>`;
+                entryString = entryString + `<li class="entry">${entrys[i].title}</li>`;
             }
         }
         return `<div class="day">
