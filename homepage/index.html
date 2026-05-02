@@ -85,7 +85,11 @@
         function updateUpcomingEntries(){
             const eventList = document.getElementById('upcomingEventList');
             const upcomingEvents = window.calendar.getUpcomingEntrys();
-            eventList.innerHTML = `<li>${upcomingEvents[0].title}: ${upcomingEvents[0].date}</li><li>${upcomingEvents[1].title}: ${upcomingEvents[1].date}</li><li>${upcomingEvents[2].title} ${upcomingEvents[2].date}</li>`;
+            let eventString = ``;
+            for (let i = 0; i < upcomingEvents.length; i++){
+                eventString = eventString + `<li>${upcomingEvents[i].title}: ${upcomingEvents[i].date}</li>`
+            }
+            eventList.innerHTML = eventString;
         }
         updateUpcomingEntries();
         let notes = JSON.parse(localStorage.getItem("notes"));
