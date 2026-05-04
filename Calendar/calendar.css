@@ -46,6 +46,22 @@
 .side-bar{
     grid-row: 2;
     grid-column: 1 / span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-entry{
+    background:var(--text-color);
+    color:var(--background-color);
+    border:0;
+    border-radius:6px;
+    padding:clamp(12px, 1.4vw, 16px) clamp(18px, 2vw, 28px);
+    font-size:clamp(16px, 1.6vw, 20px);
+    font-weight:600;
+    cursor:pointer;
+    box-shadow:0 1px 0 rgba(255,255,255,.15) inset;
+    margin: 20px 10px;
 }
 
 .calendar{
@@ -78,6 +94,7 @@
 .date-bar{
     background-color: var(--primary-color);
     margin: 10px;
+    padding: 10px;
     grid-row: 2;
     grid-column: 1 / span 7;
     display: flex;
