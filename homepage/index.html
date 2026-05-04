@@ -31,7 +31,7 @@
             <li id="note3"></li>
         </ul>
 
-        <button>Add Note</button>
+        <button id="addNoteBtn" type="button">Add Note</button>
     </div>
 
 
@@ -81,6 +81,46 @@
     <script src="../Calendar/calendar.js"></script>
     <script src="../Calendar/buttonFunctions.js"></script>
     <script>
+        function createNoteFromHome() {
+            const noteName = window.prompt("Enter note title:");
+
+            if (noteName === null) {
+                return;
+            }
+
+            const trimmedName = noteName.trim();
+
+            if (trimmedName === "") {
+                alert("Input title");
+                return;
+            }
+
+            const notes = JSON.parse(localStorage.getItem("notes")) || [];
+            const newNote = {
+                id: Date.now().toString(),
+                name: trimmedName,
+                content: "",
+                selected: false
+            };
+
+            notes.unshift(newNote);
+            localStorage.setItem("notes", JSON.stringify(notes));
+            window.location.href = `../Notes/notesEditor.html?id=${encodeURIComponent(newNote.id)}`;
+        }
+
+        function updateRecentNotes() {
+            const notes = JSON.parse(localStorage.getItem("notes")) || [];
+            const noteItems = [
+                document.getElementById('note1'),
+                document.getElementById('note2'),
+                document.getElementById('note3')
+            ];
+
+            noteItems.forEach((item, index) => {
+                item.innerText = notes[index]?.name || "";
+            });
+        }
+
         window.calendar = new Calendar();
         function updateUpcomingEntries(){
             const eventList = document.getElementById('upcomingEventList');
@@ -91,11 +131,10 @@
             }
             eventList.innerHTML = eventString;
         }
+
+        document.getElementById("addNoteBtn").addEventListener("click", createNoteFromHome);
         updateUpcomingEntries();
-        let notes = JSON.parse(localStorage.getItem("notes"));
-        document.getElementById('note1').innerText = notes[0].name;
-        document.getElementById('note2').innerText = notes[1].name;
-        document.getElementById('note3').innerText = notes[2].name;
+        updateRecentNotes();
     </script>
 
 </body>
