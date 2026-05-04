@@ -25,13 +25,9 @@
     <div class="card">
         <h2>Recent Notes</h2>
 
-        <ul>
-            <li id="note1">Recent note 1</li>
-            <li id="note2">Recent note 2</li>
-            <li id="note3"></li>
-        </ul>
+        <ul id="recentNotesList"> </ul>
 
-        <button type="button">Add Note</button>
+        <button type="button" onclick="window.location.href='../Notes/viewNotes.html'"> Add Note </button>
     </div>
 
 
@@ -92,10 +88,22 @@
             eventList.innerHTML = eventString;
         }
         updateUpcomingEntries();
-        let notes = JSON.parse(localStorage.getItem("notes"));
-        document.getElementById('note1').innerText = notes[0].name;
-        document.getElementById('note2').innerText = notes[1].name;
-        document.getElementById('note3').innerText = notes[2].name;
+let notes = JSON.parse(localStorage.getItem("notes")) || [];
+let recentNotesList = document.getElementById("recentNotesList");
+
+recentNotesList.innerHTML = "";
+
+for (let i = 0; i < 3; i++) {
+    let listItem = document.createElement("li");
+
+    if (notes[i]) {
+        listItem.innerText = notes[i].name;
+    } else {
+        listItem.innerText = "No note yet";
+    }
+
+    recentNotesList.appendChild(listItem);
+}
     </script>
 
 </body>
