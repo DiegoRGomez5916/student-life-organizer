@@ -21,6 +21,14 @@ class Calendar{
         this.entrys.sort((a, b) => new Date(a.date) - new Date(b.date));
     }
 
+    getEntryIndex(entry){
+        for(let i = 0; i < this.entrys.length; i++){
+            if(entry === this.entrys[i]){
+                return i
+            }
+        }
+    }
+
     getUpcomingEntrys(){
         const today = new Date();
         let index = 0;
@@ -62,7 +70,7 @@ class Calendar{
         let entryString = ``;
         for(let i = 0; i < entrys.length; i++){
             if (entrys.length != 0){
-                entryString = entryString + `<li class="entry" index="${i}" onclick="updateEntry(this)">${entrys[i].title}</li>`;
+                entryString = entryString + `<li class="entry" index="${this.getEntryIndex(entrys[i])}" onclick="updateEntry(this)">${entrys[i].title}</li>`;
             }
         }
         return `<div class="day">
@@ -119,6 +127,42 @@ class Entry{
         this.title = title;
         this.date = date;
         this.start = start;
+        this.end = end;
+    }
+
+    getTitle(){
+        return this.title;
+    }
+
+    setTitle(title){
+        const titlePattern = /^[\w\s]+$/;
+        if (!titlePattern.test(title)){
+            throw TypeError;
+        }
+        this.title = title;
+    }
+
+    getDate(){
+        return this.date;
+    }
+
+    setDate(date){
+        this.date = date;
+    }
+
+    getStart(){
+        return this.start;
+    }
+
+    setStart(start){
+        this.start = start;
+    }
+
+    getEnd(){
+        return this.end;
+    }
+
+    setEnd(end){
         this.end = end;
     }
 }
