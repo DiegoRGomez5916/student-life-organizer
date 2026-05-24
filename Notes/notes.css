@@ -1,8 +1,10 @@
+@import url('/styleGuide.css');
+
 body {
   margin: 0;
-  background-color: #F7F9FC;
-  font-family: 'Inter', sans-serif;
-  color: #333333;
+  background-color: var(--background-color);
+  font-family: var(--main-font);
+  color: var(--text-color);
 }
 
 .layout {
@@ -21,7 +23,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  background-color: #3A7BD5;
+  background-color: var(--primary-color);
   padding: 20px 30px;
   box-sizing: border-box;
 }
@@ -35,8 +37,8 @@ body {
   margin: 0;
   font-size: 34px;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
-  color: #000000;
+  font-family: var(--secondary-font);
+  color: var(--text-color);
   line-height: 1.1;
 }
 
@@ -44,8 +46,8 @@ body {
   margin: 8px 0 0 0;
   font-size: 24px;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
-  color: #000000;
+  font-family: var(--secondary-font);
+  color: var(--text-color);
   line-height: 1.1;
 }
 
@@ -58,10 +60,10 @@ body {
 
 .header-right a {
   text-decoration: none;
-  color: #000000;
+  color: var(--text-color);
   font-size: 22px;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--secondary-font);
 }
 
 .body {
@@ -70,29 +72,6 @@ body {
   position: relative;
   padding-left: 240px;
   box-sizing: border-box;
-}
-
-.left-logo {
-  position: fixed;
-  left: 40px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 112px;
-  height: 112px;
-  border-radius: 50%;
-  background-color: #FFFFFF;
-  border: 4px solid #DDE6F2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-}
-
-.left-logo span {
-  font-size: 22px;
-  font-weight: 700;
-  font-family: 'Poppins', sans-serif;
-  color: #333333;
 }
 
 .action {
@@ -114,13 +93,13 @@ body {
   font-family: 'Inter', sans-serif;
   border: 1px solid #D6DEEA;
   border-radius: 10px;
-  background-color: #FFFFFF;
-  color: #333333;
+  background-color: var(--background-color);
+  color: var(--text-color);
   box-sizing: border-box;
 }
 
 #site-search::placeholder {
-  color: #7A7A7A;
+  color: var(--light-text-color);
 }
 
 button {
@@ -129,12 +108,12 @@ button {
   height: 50px;
   padding: 0 20px;
   border: none;
-  background: #000000;
-  color: #FFFFFF;
+  background: var(--accent-color);
+  color: var(--text-color);
   border-radius: 10px;
   font-size: 18px;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--secondary-font);
   cursor: pointer;
 }
 
@@ -157,7 +136,7 @@ button {
   width: 180px;
   min-height: 100px;
   padding: 16px;
-  background: #3A7BD5;
+  background: var(--primary-color);
   border: none;
   border-radius: 12px;
   box-sizing: border-box;
@@ -165,7 +144,7 @@ button {
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #000000;
+  color: var(--text-color);
   font-size: 36px;
 }
 
@@ -203,7 +182,7 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #FFFFFF;
+  background-color: var(--background-color);
   padding: 20px;
   border: 1px solid #D6DEEA;
   border-radius: 12px;
@@ -223,10 +202,10 @@ button {
   height: 44px;
   font-size: 18px;
   font-family: 'Inter', sans-serif;
-  color: #333333;
+  color: var(--text-color);
   border: 1px solid #D6DEEA;
   border-radius: 10px;
-  background-color: #FFFFFF;
+  background-color: var(--background-color);
   box-sizing: border-box;
 }
 
@@ -254,7 +233,7 @@ button {
   gap: 12px;
   margin-bottom: 8px;
   padding: 8px 0;
-  background-color: #F7F9FC;
+  background-color: var(--background-color);
 }
 
 .editor-title-input {
@@ -264,8 +243,8 @@ button {
   border: 1px solid #D6DEEA;
   border-radius: 10px;
   box-sizing: border-box;
-  background-color: #FFFFFF;
-  color: #333333;
+  background-color: var(--background-color);
+  color: var(--text-color);
   font-size: 18px;
   font-weight: 600;
   font-family: 'Inter', sans-serif;
@@ -297,8 +276,8 @@ button {
   margin-bottom: 6px;
   font-size: 16px;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
-  color: #333333;
+  font-family: var(--secondary-font);
+  color: var(--text-color);
 }
 
 .note-page-label.active {
@@ -315,6 +294,6 @@ button {
   resize: none;
   font-size: 16px;
   font-family: 'Inter', sans-serif;
-  color: #333333;
-  background-color: #FFFFFF;
+  color: var(--text-color);
+  background-color: var(--background-color);
 }

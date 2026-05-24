@@ -1,21 +1,30 @@
 /* login page */
+@import url('/styleGuide.css');
+
+header {
+    background-color: var(--primary-color);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 .login-container {
     width: 300px;
     margin: 100px auto;
     padding: 25px;
-    background: #3A7BD5;
+    background-color: var(--primary-color);
     border-radius: 8px;
     text-align: center;
-    color: rgb(0, 0, 0);
+    color: var(--text-color);
 }
 
 .login-container h1 {
-    color: rgb(0, 0, 0);
+    color: var(--text-color);
 }
 
 .login-container label {
-    color: rgb(255, 255, 255);
+    color: var(--text-color);
 }
 
 .login-container input {
@@ -27,11 +36,11 @@
 }
 
 .login-container button {
-    background: black;
-    color: white;
+    background: var(--accent-color);
+    color: var(--text-color);
     width: 95%;
 }
 
 .login-container button:hover {
-    background: #8E6AE8;
+    background: var(--accent-color);
 }

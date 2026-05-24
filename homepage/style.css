@@ -1,13 +1,15 @@
+@import url('../styleGuide.css');
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #F7F9FC;
+    background-color: var(--background-color);
     margin: 0;
 }
 
 /* header */
 
 header {
-    background: #3A7BD5;
+    background-color: var(--primary-color);
     padding: 15px;
     display: flex;
     justify-content: space-between;
@@ -17,7 +19,7 @@ header {
 nav a {
     margin-left: 15px;
     text-decoration: none;
-    color: black;
+    color: var(--text-color);
 }
 
 /* layout */
@@ -32,7 +34,7 @@ nav a {
 /* cards */
 
 .card {
-    background: #3A7BD5;
+    background: var(--primary-color);
     padding: 20px;
     width: 250px;
     border-radius: 8px;
@@ -44,7 +46,7 @@ button {
     margin-top: 15px;
     padding: 10px;
     border: none;
-    background: black;
-    color: white;
+    background: var(--accent-color);
+    color: var(--text-color);
     border-radius: 5px;
 }

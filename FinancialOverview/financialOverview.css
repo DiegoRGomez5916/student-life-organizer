@@ -7,16 +7,7 @@
 < Date Due: 4/29/26
 ***********************************************************/
 /* creates variables for reusable colors */
-:root{
-  --gray-100:#f3f3f3;
-  --gray-200:#e5e5e5;
-  --gray-500:#9aa0a6;
-  --text:#111;
-  --yellow:#f4b53a;
-  --blue:#bfe6ff;
-  --btn:#111;
-  --card:#fff;
-}
+@import url('/styleGuide.css');
 
 *{
   box-sizing:border-box;
@@ -24,9 +15,9 @@
 
 body{
   margin:0;
-  font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color:var(--text);
-  background:#fff;
+  font-family: var(--main-font);
+  color:var(--text-color);
+  background-color: var(--background-color);
 }
 
 /* Page frame */
@@ -38,7 +29,7 @@ body{
 
 /* Top bar */
 .topbar{
-  background:#3A7BD5;
+  background-color: var(--primary-color);
   padding:clamp(10px, 1.5vw, 14px) clamp(12px, 1.8vw, 14px) clamp(8px, 1vw, 10px);
   position:sticky;
   top:0;
@@ -65,7 +56,7 @@ body{
 
 .navrow{
   margin-top:10px;
-  background:#3A7BD5;
+  background-color: var(--primary-color);
   border-radius:8px;
   padding:clamp(12px, 2vw, 18px);
   display:flex;
@@ -76,7 +67,7 @@ body{
 
 .navrow a{
   text-decoration:none;
-  color:#222;
+  color: var(--text-color);
   font-size:clamp(16px, 1.8vw, 22px);
   font-weight:500;
 }
@@ -99,7 +90,7 @@ body{
 
 /* Main Content area */
 .content{
-  background:#f7f9fc;
+  background:var(--background-color);
   padding:
     clamp(20px, 3vw, 36px)
     clamp(16px, 3vw, 34px)
@@ -115,23 +106,9 @@ body{
   align-items:center;
 }
 
-/* Logo circle */
-.logo{
-  width:clamp(80px, 8vw, 112px);
-  aspect-ratio:1 / 1;
-  border-radius:50%;
-  background:#fff;
-  display:grid;
-  place-items:center;
-  text-align:center;
-  font-weight:700;
-  line-height:1.1;
-  border:2px solid rgba(0,0,0,.08);
-}
-
 /* Summary of financial overview */
 .summary{
-  background:#3A7BD5;
+  background:var(--primary-color);
   border-radius:6px;
   min-height:clamp(220px, 30vw, 360px);
   display:grid;
@@ -162,8 +139,8 @@ body{
 }
 
 .btn{
-  background:var(--btn);
-  color:#fff;
+  background-color: var(--accent-color);
+  color:var(--text-color);
   border:0;
   border-radius:6px;
   padding:clamp(12px, 1.4vw, 16px) clamp(18px, 2vw, 28px);
@@ -179,16 +156,14 @@ body{
 
 /* Transaction list card */
 .list-card{
-  background:var(--card);
   border-radius:8px;
-  border:3px solid rgba(0,0,0,.35);
   padding:clamp(12px, 1.6vw, 18px);
   width:100%;
   margin-left:auto;
 }
 
 .list-inner{
-  border:3px solid rgba(0,0,0,.25);
+  background-color: var(--primary-color);
   border-radius:8px;
   padding:
     clamp(12px, 1.6vw, 18px)
@@ -197,13 +172,12 @@ body{
 }
 
 .list-title{
-  border:3px solid rgba(0,0,0,.25);
   border-radius:8px;
   padding:clamp(12px, 1.6vw, 18px);
   text-align:center;
   font-weight:600;
-  color:#333;
-  background:#fff;
+  color: var(--text-color);
+  background-color: var(--primary-color);
   margin-bottom:18px;
   font-size:clamp(16px, 1.5vw, 22px);
 }
@@ -216,7 +190,7 @@ body{
 .line{
   height:10px;
   border-radius:999px;
-  background:#cfcfcf;
+  background-color: var(--background-color);
 }
 
 /* Responsiveness */
@@ -292,10 +266,10 @@ body{
 }
 
 .transaction-item{
-  border:2px solid rgba(0,0,0,.15);
+  margin: 14px 0px;
   border-radius:10px;
   padding:12px 14px;
-  background:#fff;
+  background-color: var(--primary-color);
   cursor:pointer;
   transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
 }
@@ -307,7 +281,7 @@ body{
 }
 
 .transaction-item:focus{
-  outline:2px solid #3A7BD5;
+  outline:2px solid var(--primary-color);
   outline-offset:2px;
 }
 
@@ -330,7 +304,7 @@ body{
 
 .transaction-description{
   margin-top:8px;
-  color:#555;
+  color: var(--text-color);
   font-size:0.95rem;
   line-height:1.4;
   word-break:break-word;
@@ -338,7 +312,10 @@ body{
 
 /* Search bar*/
 .search-container{
+  background-color: var(--primary-color);
   margin-bottom:12px;
+  padding:12px 14px;
+  border-radius:10px;
 }
 
 .search-input{
@@ -351,5 +328,5 @@ body{
 }
 
 .search-input:focus{
-  border-color:#3A7BD5;
+  border-color: var(--primary-color);
 }

@@ -3,7 +3,8 @@
     --accent-color: #8E6AE8;
     --background-color: #F7F9FC;
     --text-color: #111111;
+    --light-text-color: #333333;
 
-    --base-font-size: 16px;
     --main-font: 'Arial Narrow Bold', sans-serif;
+    --secondary-font: 'Poppins', sans-serif;
 }

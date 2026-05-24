@@ -88,22 +88,22 @@
             eventList.innerHTML = eventString;
         }
         updateUpcomingEntries();
-let notes = JSON.parse(localStorage.getItem("notes")) || [];
-let recentNotesList = document.getElementById("recentNotesList");
+        let notes = JSON.parse(localStorage.getItem("notes")) || [];
+        let recentNotesList = document.getElementById("recentNotesList");
 
-recentNotesList.innerHTML = "";
+        recentNotesList.innerHTML = "";
 
-for (let i = 0; i < 3; i++) {
-    let listItem = document.createElement("li");
+        for (let i = 0; i < 3; i++) {
+            let listItem = document.createElement("li");
 
-    if (notes[i]) {
-        listItem.innerText = notes[i].name;
-    } else {
-        listItem.innerText = "No note yet";
-    }
+            if (notes[i]) {
+                listItem.innerText = notes[i].name;
+            } else {
+                listItem.innerText = "No note yet";
+            }
 
-    recentNotesList.appendChild(listItem);
-}
+            recentNotesList.appendChild(listItem);
+        }
     </script>
 
 </body>
