@@ -52,15 +52,11 @@ function submitEditButton(newEntry){
     const entryDate = document.getElementById('date').value;
     const entryStartTime = document.getElementById('start').value;
     const entryEndTime = document.getElementById('end').value;
-    try{
-        newEntry.setTitle(entryTitle);
-        newEntry.setDate(entryDate);
-        newEntry.setStart(entryStartTime);
-        newEntry.setEnd(entryEndTime);
-        window.close();
-    }catch (error){
-        alert(error)
-    }
+    newEntry.title = entryTitle;
+    newEntry.date = entryDate;
+    newEntry.start = entryStartTime;
+    newEntry.end = entryEndTime;
+    window.close();
     window.opener.updateUI()
 }
 
